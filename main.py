@@ -1,5 +1,6 @@
 import os
 import re
+import time
 
 import botpy
 from botpy import logging
@@ -38,7 +39,8 @@ class MyClient(botpy.Client):
                 msg_type=7,  # 富媒体类型
                 msg_id=message.id,
                 content="你要的萝莉：",
-                media=upload_media
+                media=upload_media,
+                msg_seq=int(time.time())  # 设置msgseq为当前时间戳
             )
         message_result = await message._api.post_group_message(
             group_openid=message.group_openid,
